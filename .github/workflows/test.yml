@@ -30,15 +30,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: home-assistant/actions/hassfest@master
 
-  hacs:
-    runs-on: ubuntu-latest
-    # Publish-readiness gate. It cannot fully pass until the integration is on the
-    # default branch and the repo has a description, topics and brand assets, so it
-    # runs as informational (non-blocking) for now.
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hacs/action@main
-        with:
-          category: integration
-          ignore: brands
+  # NOTE: HACS publish validation (hacs/action) is intentionally not run here.
+  # It gates on repo description, topics, brand registration and content being on
+  # the default branch — none of which are code concerns, and it cannot pass until
+  # the integration is merged and the repo is set up for publishing. Run it then.
