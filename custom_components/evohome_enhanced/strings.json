@@ -1,0 +1,103 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Evohome Enhanced",
+        "description": "Sign in with your Honeywell Total Connect Comfort (EMEA) account.",
+        "data": {
+          "username": "Email",
+          "password": "Password",
+          "location_idx": "Location index"
+        },
+        "data_description": {
+          "location_idx": "The index of the location to use (0 for the first/only location)."
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid authentication",
+      "cannot_connect": "Failed to connect",
+      "invalid_location_idx": "That location index does not exist for this account"
+    },
+    "abort": {
+      "already_configured": "This account is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval": "Scan interval (seconds)",
+          "high_precision": "High-precision temperatures"
+        },
+        "data_description": {
+          "scan_interval": "How often to poll the vendor's API. Lower values risk rate limiting.",
+          "high_precision": "Use the v1 API for 0.1°C-resolution temperatures (an extra API call)."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "setpoint": { "name": "Setpoint" },
+      "heat_demand": { "name": "Heat demand" },
+      "zone_mode": { "name": "Mode" },
+      "system_mode": { "name": "System mode" }
+    },
+    "binary_sensor": {
+      "fault": { "name": "Fault" },
+      "calling_for_heat": { "name": "Calling for heat" },
+      "dhw_heating": { "name": "Heating" }
+    },
+    "button": {
+      "reset": { "name": "Reset" }
+    }
+  },
+  "exceptions": {
+    "controller_only_service": {
+      "message": "The {service} service is only supported by the controller."
+    },
+    "zone_only_service": {
+      "message": "The {service} service is only supported by zones."
+    },
+    "invalid_system_mode": {
+      "message": "Invalid system mode: {error}"
+    }
+  },
+  "services": {
+    "refresh_system": {
+      "name": "Refresh system",
+      "description": "Pull the latest state from the vendor's API immediately."
+    },
+    "set_system_mode": {
+      "name": "Set system mode",
+      "description": "Set the operating mode of the controller, optionally for a period.",
+      "fields": {
+        "mode": { "name": "Mode", "description": "The system mode." },
+        "period": { "name": "Period", "description": "A number of whole days." },
+        "duration": { "name": "Duration", "description": "A duration of up to 24 hours." }
+      }
+    },
+    "set_zone_override": {
+      "name": "Set zone override",
+      "description": "Override a zone's setpoint, permanently or for a duration.",
+      "fields": {
+        "setpoint": { "name": "Setpoint", "description": "The target temperature (°C)." },
+        "duration": { "name": "Duration", "description": "The override duration." }
+      }
+    },
+    "clear_zone_override": {
+      "name": "Clear zone override",
+      "description": "Return a zone to following its schedule."
+    },
+    "set_dhw_override": {
+      "name": "Set DHW override",
+      "description": "Override the hot water on/off state, permanently or for a duration.",
+      "fields": {
+        "state": { "name": "State", "description": "On (true) or off (false)." },
+        "duration": { "name": "Duration", "description": "The override duration." }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "domain": "evohome_enhanced",
+  "name": "Evohome Enhanced",
+  "codeowners": ["@tombazza"],
+  "config_flow": true,
+  "documentation": "https://github.com/tombazza/evohome-enhanced",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/tombazza/evohome-enhanced/issues",
+  "loggers": ["evohomeasync", "evohomeasync2"],
+  "requirements": ["evohome-async==1.2.0"],
+  "version": "0.1.0"
+}

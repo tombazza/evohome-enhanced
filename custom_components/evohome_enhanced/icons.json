@@ -1,0 +1,23 @@
+{
+  "entity": {
+    "sensor": {
+      "setpoint": { "default": "mdi:thermometer-lines" },
+      "heat_demand": { "default": "mdi:radiator" },
+      "zone_mode": { "default": "mdi:tune-variant" },
+      "system_mode": { "default": "mdi:home-thermometer" }
+    },
+    "binary_sensor": {
+      "calling_for_heat": { "default": "mdi:radiator", "state": { "off": "mdi:radiator-off" } }
+    },
+    "button": {
+      "reset": { "default": "mdi:backup-restore" }
+    }
+  },
+  "services": {
+    "refresh_system": "mdi:refresh",
+    "set_system_mode": "mdi:home-thermometer",
+    "set_zone_override": "mdi:thermometer",
+    "clear_zone_override": "mdi:thermometer-off",
+    "set_dhw_override": "mdi:water-boiler"
+  }
+}

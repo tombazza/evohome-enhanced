@@ -1,0 +1,88 @@
+refresh_system:
+  name: Refresh system
+  description: Pull the latest state from the vendor's API immediately.
+
+set_system_mode:
+  name: Set system mode
+  description: Set the operating mode of the controller, optionally for a period.
+  target:
+    entity:
+      integration: evohome_enhanced
+      domain: climate
+  fields:
+    mode:
+      name: Mode
+      description: The system mode (e.g. Auto, AutoWithEco, Away, DayOff, HeatingOff, Custom).
+      required: true
+      example: Away
+      selector:
+        text:
+    period:
+      name: Period
+      description: A number of whole days (mutually exclusive with duration).
+      example: '{"days": 28}'
+      selector:
+        duration:
+          enable_day: true
+    duration:
+      name: Duration
+      description: A duration of up to 24 hours (mutually exclusive with period).
+      example: '{"hours": 8}'
+      selector:
+        duration:
+
+set_zone_override:
+  name: Set zone override
+  description: Override a zone's setpoint, permanently or for a duration.
+  target:
+    entity:
+      integration: evohome_enhanced
+      domain: climate
+  fields:
+    setpoint:
+      name: Setpoint
+      description: The target temperature in degrees Celsius.
+      required: true
+      example: 19.5
+      selector:
+        number:
+          min: 4
+          max: 35
+          step: 0.5
+          unit_of_measurement: "°C"
+    duration:
+      name: Duration
+      description: The override duration (omit for a permanent override).
+      example: '{"hours": 1}'
+      selector:
+        duration:
+
+clear_zone_override:
+  name: Clear zone override
+  description: Return a zone to following its schedule.
+  target:
+    entity:
+      integration: evohome_enhanced
+      domain: climate
+
+set_dhw_override:
+  name: Set DHW override
+  description: Override the hot water on/off state, permanently or for a duration.
+  target:
+    entity:
+      integration: evohome_enhanced
+      domain: water_heater
+  fields:
+    state:
+      name: State
+      description: Whether the hot water should be on (true) or off (false).
+      required: true
+      example: true
+      selector:
+        boolean:
+    duration:
+      name: Duration
+      description: The override duration (omit for a permanent override).
+      example: '{"hours": 1}'
+      selector:
+        duration:
