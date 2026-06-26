@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/ruff-action@v3
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install test dependencies
+        run: pip install -r requirements-test.txt
+      - name: Run tests
+        run: pytest tests/ -q
+
+  hassfest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  # NOTE: HACS publish validation (hacs/action) is intentionally not run here.
+  # It gates on repo description, topics, brand registration and content being on
+  # the default branch — none of which are code concerns, and it cannot pass until
+  # the integration is merged and the repo is set up for publishing. Run it then.
