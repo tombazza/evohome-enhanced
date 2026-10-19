@@ -1,3 +1,5 @@
+# Pinned to mirror the Home Assistant runtime these tests target
+# (HA 2026.10.2 on Python 3.14, which bundles evohome-async 2.1.0).
 ruff
-evohome-async==1.2.0
-pytest-homeassistant-custom-component
+evohome-async==2.1.0
+pytest-homeassistant-custom-component==0.13.373

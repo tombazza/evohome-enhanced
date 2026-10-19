@@ -10,7 +10,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
-from evohomeasync2.schemas.const import DhwState as EvoDhwState
+from evohomeasync2.const import DhwState as EvoDhwState
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
     BinarySensorEntity,

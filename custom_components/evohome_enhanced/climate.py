@@ -14,8 +14,8 @@ from evohomeasync2.const import (
     SZ_SYSTEM_MODE_STATUS,
     SZ_TEMPERATURE_STATUS,
 )
-from evohomeasync2.schemas.const import SystemMode as EvoSystemMode
-from evohomeasync2.schemas.const import ZoneMode as EvoZoneMode
+from evohomeasync2.const import SystemMode as EvoSystemMode
+from evohomeasync2.const import ZoneMode as EvoZoneMode
 from homeassistant.components.climate import (
     PRESET_AWAY,
     PRESET_ECO,

@@ -10,13 +10,13 @@ from typing import Any
 
 import evohomeasync as ec1
 import evohomeasync2 as ec2
-from evohomeasync2.schemas.typedefs import EvoLocStatusResponseT
+from evohomeasync2.typedefs import EvoLocStatusT
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 
-class EvoDataUpdateCoordinator(DataUpdateCoordinator[EvoLocStatusResponseT]):
+class EvoDataUpdateCoordinator(DataUpdateCoordinator[EvoLocStatusT]):
     """Single coordinator that fans out to every evohome platform.
 
     All entities are read-only views over ``self.data`` (v2 location status) and
@@ -138,7 +138,7 @@ class EvoDataUpdateCoordinator(DataUpdateCoordinator[EvoLocStatusResponseT]):
             except ec2.InvalidScheduleError as err:
                 self.logger.warning("DHW has an invalid/missing schedule: %r", err)
 
-    async def _async_update_data(self) -> EvoLocStatusResponseT:
+    async def _async_update_data(self) -> EvoLocStatusT:
         """Fetch the latest state of the entire location."""
         await self._update_v2_api_state()  # may raise UpdateFailed
         if self.client_v1:
